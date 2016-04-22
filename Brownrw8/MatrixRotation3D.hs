@@ -1,4 +1,4 @@
-module Brownrw8.MatrixRotation3D (AxisOfRotation,Radians,rotate)
+module Brownrw8.MatrixRotation3D (AxisOfRotation,Radians,rotate,d2i)
 where
 
 import Data.Matrix
@@ -37,5 +37,7 @@ rz r =  fromLists [[cos(r),(-1) * sin(r),0,0]
         ,[sin(r),cos(r),0,0]
         ,[0,0,1,0]
         ,[0,0,0,1]]
-       
-       
+
+-- Round Matrix Double to Matrix Int
+d2i :: Matrix Double -> Matrix Int
+d2i a = fromLists (map (map (round)) (toLists a))
