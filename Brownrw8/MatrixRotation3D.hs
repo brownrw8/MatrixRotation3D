@@ -1,39 +1,39 @@
-module Brownrw8.MatrixRotation3D (AxisOfRotation,Degrees,rotate)
+module Brownrw8.MatrixRotation3D (AxisOfRotation,Radians,rotate)
 where
 
 import Data.Matrix
 
--- Alias Degrees == Double
-type Degrees = Double
+-- Alias Radians == Double
+type Radians = Double
 
 -- Axis of rotation, may be x y or z
 data AxisOfRotation = XAxis | YAxis | ZAxis
 
--- Rotate ar axis by d degrees
+-- Rotate ar axis by d radians
 -- Partial application recommended
-rotate :: AxisOfRotation -> Degrees -> Matrix Double -> Matrix Double
-rotate ar d m = case ar of
-    XAxis -> (rx d) * m 
-    YAxis -> (ry d) * m 
-    ZAxis -> (rz d) * m 
+rotate :: AxisOfRotation -> Radians -> Matrix Double -> Matrix Double
+rotate ar r m = case ar of
+    XAxis -> (rx r) * m 
+    YAxis -> (ry r) * m 
+    ZAxis -> (rz r) * m 
 
--- Rotate x axis by d degrees
-rx :: Degrees -> Matrix Double
-rx d =  fromLists [[1,0,0,0]
-        ,[0,cos(d),sin(d),0]
-        ,[0,(-1) * sin(d),cos(d),0]
+-- Rotate x axis by r radians
+rx :: Radians -> Matrix Double
+rx r =  fromLists [[1,0,0,0]
+        ,[0,cos(r),sin(r),0]
+        ,[0,(-1) * sin(r),cos(r),0]
         ,[0,0,0,1]]
 
--- Rotate y axis by d degrees
-ry :: Degrees -> Matrix Double
-ry d =  fromLists [[cos(d),0,(-1) * sin(d),0]
+-- Rotate y axis by r radians
+ry :: Radians -> Matrix Double
+ry r =  fromLists [[cos(r),0,(-1) * sin(r),0]
         ,[0,1,0,0]
-        ,[sin(d),0,cos(d),0]
+        ,[sin(r),0,cos(r),0]
         ,[0,0,0,1]]
         
--- Rotate z axis by d degrees
-rz :: Degrees -> Matrix Double
-rz d =  fromLists [[cos(d),sin(d),0,0]
-        ,[(-1) * sin(d),cos(d),0,0]
+-- Rotate z axis by r radians
+rz :: Radians -> Matrix Double
+rz r =  fromLists [[cos(r),sin(r),0,0]
+        ,[(-1) * sin(r),cos(r),0,0]
         ,[0,0,1,0]
         ,[0,0,0,1]]
