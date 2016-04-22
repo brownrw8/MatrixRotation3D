@@ -20,20 +20,22 @@ rotate ar r m = case ar of
 -- Rotate x axis by r radians
 rx :: Radians -> Matrix Double
 rx r =  fromLists [[1,0,0,0]
-        ,[0,cos(r),sin(r),0]
-        ,[0,(-1) * sin(r),cos(r),0]
+        ,[0,cos(r),(-1) * sin(r),0]
+        ,[0,sin(r),cos(r),0]
         ,[0,0,0,1]]
 
 -- Rotate y axis by r radians
 ry :: Radians -> Matrix Double
-ry r =  fromLists [[cos(r),0,(-1) * sin(r),0]
+ry r =  fromLists [[cos(r),0,sin(r),0]
         ,[0,1,0,0]
-        ,[sin(r),0,cos(r),0]
+        ,[(-1) * sin(r),0,cos(r),0]
         ,[0,0,0,1]]
         
 -- Rotate z axis by r radians
 rz :: Radians -> Matrix Double
-rz r =  fromLists [[cos(r),sin(r),0,0]
-        ,[(-1) * sin(r),cos(r),0,0]
+rz r =  fromLists [[cos(r),(-1) * sin(r),0,0]
+        ,[sin(r),cos(r),0,0]
         ,[0,0,1,0]
         ,[0,0,0,1]]
+       
+       
